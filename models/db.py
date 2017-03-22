@@ -90,6 +90,10 @@ plugins = PluginManager()
 # -------------------------------------------------------------------------
 # create all tables needed by auth if not custom tables
 # -------------------------------------------------------------------------
+auth.settings.extra_fields[auth.settings.table_user_name]= [
+  Field('Education_Stream','string',readable=True,writable=True),
+  Field('Specialization','string',readable=True,writable=True),
+  ]
 auth.define_tables(username=False, signature=False)
 
 # -------------------------------------------------------------------------
