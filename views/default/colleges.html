@@ -1,0 +1,37 @@
+{{extend 'layout.html'}}
+<style>
+    .headings {
+        color: DarkBlue;
+        font-weight: bold;
+    }
+    h2{
+        color : peru;
+        font-weight:bold;
+    }
+    td{
+        text-align:center;
+    }
+</style>
+<h2>List of {{=rows[0].Stream}} Colleges</h2>
+<table class="table">
+    <tr class="headings">
+        <td>S.No.</td><td>Institute Name</td><td>Ownership</td><td>Exams</td><td>Votes given by Users</td><td>Vote for college</td>
+    </tr>
+    {{for row in rows:}}
+        <tr>
+            <td class="num">i</td><td><a href="{{=row.URL}}" target="_blank">{{=row.institute_name}}</a></td><td>{{=row.Ownership}}</td><td>{{=row.Exam}}</td><td id="row{{=row.id}}" >{{=row.votes}}</td>
+           <td>
+               {{url = URL('default', 'vote_callback',vars=dict(id=row.id, direction='up'))}}
+               <button name="up_button" onclick="ajax('{{=url}}', [], 'row{{=row.id}}')">+</button>
+               {{url = URL('default', 'vote_callback',vars=dict(id=row.id, direction='down'))}}
+               <button name="down_button" onclick="ajax('{{=url}}', [], 'row{{=row.id}}')">-</button>
+            </td>
+        </tr>
+    {{pass}}
+</table>
+<script>
+    var list = document.getElementsByClassName("num");
+    for (var i = 0; i < list.length; i++) {
+    list[i].innerHTML = i+1;
+}
+</script>

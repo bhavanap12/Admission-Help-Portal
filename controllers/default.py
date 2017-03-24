@@ -57,5 +57,32 @@ def call():
     supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv
     """
     return service()
-
-
+def engg_colleges():
+    rows=db(db.institute_list.Stream=='Engineering').select()
+    response.view='default/colleges.html'
+    return locals()
+def design_colleges():
+    rows=db(db.institute_list.Stream=='Design').select()
+    response.view='default/colleges.html'
+    return locals()
+def arch_colleges():
+    rows=db(db.institute_list.Stream=='Architecture').select()
+    response.view='default/colleges.html'
+    return locals()
+def vote_callback():
+    vars=request.get_vars
+    if vars and auth.user:
+        id=vars.id
+        direction=+1 if vars.direction == 'up' else -1
+        list_row=db.institute_list(id)
+        if list_row:
+            voted=db.vote(institute=id,created_by=auth.user.id)
+            if not voted:
+                list_row.update_record(votes=list_row.votes+direction)
+                db.vote.insert(institute=id,score=direction)
+            elif voted.score!=direction:
+                list_row.update_record(votes=list_row.votes+direction*2)
+                voted.update_record(score=direction)
+            else:
+                pass
+    return str(list_row.votes)
