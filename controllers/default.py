@@ -39,7 +39,37 @@ def user():
     """
     return dict(form=auth())
 
+def manage():
+    return locals()
 
+def propose():
+    form=SQLFORM(db.content_proposed).process()
+    if form.accepted:
+        response.flash="form accepted"
+    elif form.errors:
+        response.flash="form contains errors"
+    else :
+        pass
+        
+    return locals()
+
+def publish():
+    vars=request.get_vars
+    id=vars.id
+    if vars and auth.user:
+        row=db.content_proposed(id)
+        if row.type_section=='News Stories':
+            db.news_stories.insert(title=row.title,body=row.body,time_stamp=row.time_stamp)
+        if row.type_section=='Articles':
+            db.articles.insert(title=row.title,body=row.body,time_stamp=row.time_stamp,author=row.author)
+    return locals()
+def proposals():
+    rows=db(db.content_proposed).select()
+    return locals()
+
+def show_content():
+    post=db.content_proposed(request.args(0,cast=int))
+    return locals()
 @cache.action()
 def download():
     """

@@ -31,13 +31,20 @@ response.google_analytics_id = None
 response.menu = [
     (T('Home'), False, URL('default', 'index')),
     
-    (T('Engineering'), False, URL('default', 'user'),[(T('Colleges'), False, URL('default', 'engg_colleges')),(T('News_Stories'), False, URL('default', 'user')),(T('Announcements'), False, URL('default', 'user'))]),
-    (T('Architecture'), False, URL('default', 'user'),[(T('Colleges'), False, URL('default', 'arch_colleges')),(T('News_Stories'), False, URL('default', 'user')),(T('Announcements'), False, URL('default', 'user'))]),
-    (T('Design'), False, URL('default', 'user'),[(T('Colleges'), False, URL('default', 'design_colleges')),(T('News_Stories'), False, URL('default', 'user')),(T('Announcements'), False, URL('default', 'user'))]),
+    (T('Engineering'), False, URL('default', 'user'),[(T('Colleges'), False, URL('default', 'engg_colleges')),(T('News_Stories'), False, URL('default', 'user')),(T('Announcements'), False, URL('default', 'user')),(T('Study_Material'), False, URL('default', 'user'))]),
+    (T('Architecture'), False, URL('default', 'user'),[(T('Colleges'), False, URL('default', 'arch_colleges')),(T('News_Stories'), False, URL('default', 'user')),(T('Announcements'), False, URL('default', 'user')),(T('Study_Material'), False, URL('default', 'user'))]),
+    (T('Design'), False, URL('default', 'user'),[(T('Colleges'), False, URL('default', 'design_colleges')),(T('News_Stories'), False, URL('default', 'user')),(T('Announcements'), False, URL('default', 'user')),(T('Study_Material'), False, URL('default', 'user'))]),
 ]
 
 
+if auth.has_membership('managers'):
+    response.menu.append((T('Manage'),False,URL('default','manage_admin')),)
 
+if auth.has_membership('experts'):
+    response.menu.append((T('Propose'),False,URL('default','propose')),)
+    
+if auth.has_membership('content_manager'):
+    response.menu.append((T('Proposals'),False,URL('default','proposals')))
 
 # ----------------------------------------------------------------------------------------------------------------------
 # provide shortcuts for development. remove in production

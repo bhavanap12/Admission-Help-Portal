@@ -1,0 +1,16 @@
+{{extend 'layout.html'}}
+<h1>Proposed Articles</h1>
+<table class="table">
+    {{for row in rows:}} 
+    <tr>
+        <td><a href="{{=URL('show_content',args=row.id)}}">{{=row.title}}</a></td>
+        <td>{{=row.time_stamp}}</td>
+        <td>
+               {{url = URL('default', 'publish',vars=dict(id=row.id, direction='up'))}}
+               <button name="publish" onclick="ajax('{{=url}}', [], 'row{{=row.id}}')">publish</button>
+               {{url = URL('default', 'reject',vars=dict(id=row.id, direction='down'))}}
+               <button name="reject" onclick="ajax('{{=url}}', [], 'row{{=row.id}}')">reject</button>
+        </td>
+    </tr>
+    {{pass}}
+</table>
