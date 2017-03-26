@@ -16,24 +16,20 @@ db.define_table('vote',
 db.define_table('content_proposed',
                 Field('branch','string'),
                Field('specialization','string'),
-                Field('type_section',requires=IS_IN_SET(['News Stories','Articles'])),
+                Field('type_section',requires=IS_IN_SET(['News and Articles','Resources'])),
                Field('title','string'),
                Field('body','text'),
                Field('key_word1','string',),
                Field('key_word2','string',),
                Field('key_word3','string',),
-               Field('time_stamp','datetime'),
+               Field('time_stamp','datetime',readable=False,writable=False),
+               Field('author','string',readable=False,writable=False),
               )
                 
-db.define_table('news_stories',
-                Field('title','string'),
-                Field('body','text'),
-                Field('time_stamp','datetime'),
-              
-               )
-db.define_table('articles',
+db.define_table('news_and_articles',
                 Field('title','string'),
                 Field('body','text'),
                 Field('time_stamp','datetime'),
                 Field('author','string'),
+              
                )

@@ -1,0 +1,11 @@
+{{extend 'layout.html'}}
+<h1> News Stories and Articles</h1>
+<div>
+    {{for row in rows:}}
+    <div >
+        <h2 style="color:#0000FF">{{=row.title}}</h2>
+        <i>Posted on {{=row.time_stamp}}</i>
+        <p>{{=row.body}}</p>
+    </div>
+    {{pass}}
+</div>

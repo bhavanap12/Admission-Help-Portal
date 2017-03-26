@@ -22,18 +22,14 @@ db.define_table('content_proposed',
                Field('key_word1','string',),
                Field('key_word2','string',),
                Field('key_word3','string',),
-               Field('time_stamp','datetime'),
+               Field('time_stamp','datetime',readable=False,writable=False),
+               Field('author','string',readable=False,writable=False),
               )
                 
-db.define_table('news_stories',
-                Field('title','string',requires=IS_NOT_EMPTY),
-                Field('body','text',requires=IS_NOT_EMPTY),
-                Field('time_stamp','datetime'),
-              
-               )
-db.define_table('articles',
-                Field('title','string',requires=IS_NOT_EMPTY),
-                Field('body','text',requires=IS_NOT_EMPTY),
+db.define_table('news_and_articles',
+                Field('title','string'),
+                Field('body','text'),
                 Field('time_stamp','datetime'),
                 Field('author','string'),
+              
                )

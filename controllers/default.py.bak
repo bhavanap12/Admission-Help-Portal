@@ -40,9 +40,18 @@ def user():
     return dict(form=auth())
 
 def manage():
+    grid=SQLFORM.grid(db.auth_user)
     return locals()
 
 def propose():
+    db.content_proposed.author.default=auth.user.first_name+" "+auth.user.last_name
+    db.content_proposed.author.writeable=False
+    db.content_proposed.author.readable=False
+    
+    db.content_proposed.time_stamp.default=request.now
+    db.content_proposed.time_stamp.writeable=False
+    db.content_proposed.time_stamp.readable=False
+    
     form=SQLFORM(db.content_proposed).process()
     if form.accepted:
         response.flash="form accepted"
@@ -55,12 +64,16 @@ def propose():
 
 def publish():
     vars=request.get_vars
+    id=vars.id
     if vars and auth.user:
         row=db.content_proposed(id)
-        if row.type_section=='News Stories':
-            db.news_stories.insert(title=row.title,body=row.body,time_stamp=row.time_stamp)
-        if row.type_section=='Articles':
-            db.articles.insert(title=row.title,body=row.body,time_stamp=row.time_stamp,author=row.author)
+        if row.type_section=='News and Articles':
+            db.news_and_articles.insert(title=row.title,body=row.body,time_stamp=row.time_stamp,author=row.author)
+        
+    return locals()
+
+def news_and_articles():
+    rows=db(db.news_and_articles).select()
     return locals()
 def proposals():
     rows=db(db.content_proposed).select()
@@ -86,18 +99,24 @@ def call():
     supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv
     """
     return service()
+def resources():
+    return locals()
+
 def engg_colleges():
     rows=db(db.institute_list.Stream=='Engineering').select()
     response.view='default/colleges.html'
     return locals()
+
 def design_colleges():
     rows=db(db.institute_list.Stream=='Design').select()
     response.view='default/colleges.html'
     return locals()
+
 def arch_colleges():
     rows=db(db.institute_list.Stream=='Architecture').select()
     response.view='default/colleges.html'
     return locals()
+
 def vote_callback():
     vars=request.get_vars
     if vars and auth.user:
