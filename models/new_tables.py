@@ -33,3 +33,13 @@ db.define_table('news_and_articles',
                 Field('author','string'),
               
                )
+db.define_table('follow',
+               Field('branch','string'),
+               Field('specialization','string'),
+               Field('subscribers','integer',default=0)
+               )
+db.define_table('notifications',
+               Field('userId'),
+               Field('branchy'),
+               Field('specializationy'),
+               Field('body','string'))

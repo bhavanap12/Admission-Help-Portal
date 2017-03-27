@@ -16,7 +16,7 @@ db.define_table('vote',
 db.define_table('content_proposed',
                 Field('branch','string'),
                Field('specialization','string'),
-                Field('type_section',requires=IS_IN_SET(['News Stories','Articles'])),
+                Field('type_section',requires=IS_IN_SET(['News and Articles','Resources'])),
                Field('title','string'),
                Field('body','text'),
                Field('key_word1','string',),
@@ -33,3 +33,13 @@ db.define_table('news_and_articles',
                 Field('author','string'),
               
                )
+db.define_table('follow',
+               Field('branch','string'),
+               Field('specialization','string'),
+               Field('subscribers','integer',default=0)
+               )
+db.define_table('notifications',
+               Field('userId'),
+               Field('branch'),
+               Field('specialization'),
+               Field('body','string'))

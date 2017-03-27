@@ -20,7 +20,12 @@ def index():
     response.flash = T("Hello World")
     return dict(message=T('Welcome to web2py!'))
 
-
+def put_notification():
+    vars=request.get_vars
+    response.flash=vars
+    db.notifications.insert(userId=vars.id1,branchy=vars.branch,specializationy=vars.specialization,body='Resources added')
+    return locals()
+    
 def user():
     """
     exposes:
@@ -71,7 +76,14 @@ def publish():
             db.news_and_articles.insert(title=row.title,body=row.body,time_stamp=row.time_stamp,author=row.author)
         
     return locals()
-
+@auth.requires('login')
+def notify():
+    rows=db(db.notifications.userId==auth.user.id).select()
+    return locals()
+@auth.requires('login')
+def follow():
+    rows=db(db.follow).select()
+    return locals()
 def news_and_articles():
     rows=db(db.news_and_articles).select()
     return locals()

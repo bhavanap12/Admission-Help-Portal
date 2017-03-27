@@ -1,5 +1,5 @@
 {{extend 'layout.html'}}
-<h1>Proposed Articles</h1>
+<h1  style="color:#0000FF">Proposed Articles</h1>
 <table class="table">
     {{for row in rows:}} 
     <tr>
@@ -7,9 +7,9 @@
         <td>{{=row.time_stamp}}</td>
         <td>
                {{url = URL('default', 'publish',vars=dict(id=row.id, direction='up'))}}
-               <button name="publish" onclick="ajax('{{=url}}', [], 'row{{=row.id}}')">+</button>
+               <button name="publish" onclick="ajax('{{=url}}', [], 'row{{=row.id}}')">publish</button>
                {{url = URL('default', 'reject',vars=dict(id=row.id, direction='down'))}}
-               <button name="reject" onclick="ajax('{{=url}}', [], 'row{{=row.id}}')">-</button>
+               <button name="reject" onclick="ajax('{{=url}}', [], 'row{{=row.id}}')">reject</button>
         </td>
     </tr>
     {{pass}}

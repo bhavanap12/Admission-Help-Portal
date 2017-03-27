@@ -1,0 +1,15 @@
+{{extend 'layout.html'}}
+<h1  style="color:#800000">Follow</h1>
+<table class="table">
+    {{for row in rows:}} 
+    <tr>
+        <td>{{=row.branch}}</a></td>
+        <td>{{=row.specialization}}</td>
+        <td>
+               {{url = URL('default', 'put_notification',vars=dict(branch=row.branch,specialization=row.specialization))}}
+               <button name="publish" onclick="ajax('{{=url}}', [], 'row{{=row.id}}')">follow</button>
+               
+        </td>
+    </tr>
+    {{pass}}
+</table>
