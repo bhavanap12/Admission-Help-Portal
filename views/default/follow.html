@@ -6,7 +6,7 @@
         <td>{{=row.branch}}</a></td>
         <td>{{=row.specialization}}</td>
         <td>
-               {{url = URL('default', 'put_notification',vars=dict(id1=auth.user.id,branch=row.branch,specialization=row.specialization))}}
+               {{url = URL('default', 'put_subscriber',vars=dict(id1=auth.user.id,branch=row.branch,specialization=row.specialization))}}
                <button name="publish" onclick="ajax('{{=url}}', [], 'row{{=row.id}}')">follow</button>
                
         </td>

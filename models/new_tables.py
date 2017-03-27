@@ -31,7 +31,8 @@ db.define_table('news_and_articles',
                 Field('body','text'),
                 Field('time_stamp','datetime'),
                 Field('author','string'),
-              
+                Field('branch',readable=False,writable=False),
+                Field('specialization',readable=False,writable=False)
                )
 db.define_table('follow',
                Field('branch','string'),
@@ -39,6 +40,12 @@ db.define_table('follow',
                Field('subscribers','integer',default=0)
                )
 db.define_table('notifications',
+               Field('userId'),
+               Field('branchy'),
+               Field('specializationy'),
+               Field('body','string'))
+
+db.define_table('subscribe',
                Field('userId'),
                Field('branchy'),
                Field('specializationy'),

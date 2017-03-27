@@ -20,12 +20,24 @@ def index():
     response.flash = T("Hello World")
     return dict(message=T('Welcome to web2py!'))
 
-def put_notification():
+def put_subscriber():
     vars=request.get_vars
-    response.flash=vars
-    db.notifications.insert(userId=vars.id1,branchy=vars.branch,specializationy=vars.specialization,body='Resources added')
-    return locals()
+    print vars.id1
+    db.subscribe.insert(userId=vars.id1,branchy=vars.branch,specializationy=vars.specialization)
     
+    return locals()
+   
+    
+    
+def insert_notification(br,sp):
+    response.flash=sp
+    rows=db(db.subscribe).select()
+    for row in rows :
+        response.flash=row.userId
+        db.notifications.insert(userId=row.userId,branchy=br,specializationy=sp,body='Resources added')
+
+    return locals()
+
 def user():
     """
     exposes:
@@ -73,7 +85,11 @@ def publish():
     if vars and auth.user:
         row=db.content_proposed(id)
         if row.type_section=='News and Articles':
-            db.news_and_articles.insert(title=row.title,body=row.body,time_stamp=row.time_stamp,author=row.author)
+            db.news_and_articles.insert(title=row.title,body=row.body,time_stamp=row.time_stamp,author=row.author,branch=row.branch,
+                                    specialization=row.specialization)
+            insert_notification(row.branch,row.specialization)
+            
+            
         
     return locals()
 @auth.requires('login')
