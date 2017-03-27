@@ -78,7 +78,7 @@ def publish():
     return locals()
 @auth.requires('login')
 def notify():
-    rows=db(db.notifications.user_id==auth.user.id).select()
+    rows=db(db.notifications.userId==auth.user.id).select()
     return locals()
 @auth.requires('login')
 def follow():
@@ -112,6 +112,8 @@ def call():
     """
     return service()
 def resources():
+    rows=db(db.study_material.Exam=='JEE').select()
+    response.view='default/file.html'
     return locals()
 
 def engg_colleges():

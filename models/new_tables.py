@@ -43,3 +43,9 @@ db.define_table('notifications',
                Field('branchy'),
                Field('specializationy'),
                Field('body','string'))
+
+db.define_table('study_material',
+                Field('title','string'),
+                Field('Exam','string'),
+                Field('path_of_resource','string'),
+               )

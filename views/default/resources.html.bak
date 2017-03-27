@@ -1,0 +1,31 @@
+{{extend 'layout.html'}}
+<style>
+    .headings {
+        color: DarkBlue;
+        font-weight: bold;
+    }
+    h2{
+        color : peru;
+        font-weight:bold;
+    }
+    td{
+        text-align:center;
+    }
+</style>
+<h2>List of {{=rows[0].Exam}} Colleges</h2>
+<table class="table">
+    <tr class="headings">
+        <td>S.No.</td><td>Book</td><td>Exam Name</td>
+    </tr>
+    {{for row in rows:}}
+        <tr>
+            <td class="num">i</td><td><a href="{{=row.path_of_resource}}" target="_blank">{{=row.title}}</a></td><td>{{=row.Exam}}</td>
+        </tr>
+    {{pass}}
+</table>
+<script>
+    var list = document.getElementsByClassName("num");
+    for (var i = 0; i < list.length; i++) {
+    list[i].innerHTML = i+1;
+}
+</script>

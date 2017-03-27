@@ -112,6 +112,8 @@ def call():
     """
     return service()
 def resources():
+    rows=db(db.study_material.Exam=='JEE').select()
+    response.view='default/resources.html'
     return locals()
 
 def engg_colleges():

@@ -195,3 +195,17 @@
 [2017-03-27 11:47:07] EDIT project_se/models/new_tables.py: 0
 [2017-03-27 11:47:57] EDIT project_se/controllers/default.py: 2
 [2017-03-27 11:48:52] EDIT project_se/controllers/default.py: 0
+[2017-03-27 12:01:20] EDIT original/models/new_tables.py: 5
+[2017-03-27 12:02:36] EDIT original/controllers/default.py: 2
+[2017-03-27 12:02:55] EDIT original/models/menu.py: 0
+[2017-03-27 12:03:11] EDIT original/models/menu.py: 0
+[2017-03-27 12:03:28] EDIT original/models/menu.py: 0
+[2017-03-27 12:04:18] CREATE default/resouces.html: 0
+[2017-03-27 12:04:32] DELETE original/views/default/resouces.html: -3
+[2017-03-27 12:04:53] CREATE default/resources.html: 0
+[2017-03-27 12:05:20] EDIT original/views/default/resources.html: 28
+[2017-03-27 12:06:59] UPLOAD /home/pulkit/Desktop/web2py/applications/original/static/assignment4-sns.pdf: 816
+[2017-03-27 12:12:29] EDIT original/views/default/resources.html: 0
+[2017-03-27 12:14:48] EDIT original/controllers/default.py: 0
+[2017-03-27 12:16:57] UPLOAD /home/pulkit/Desktop/web2py/applications/original/static/Assignment1.pdf: 524
+[2017-03-27 12:17:41] UPLOAD /home/pulkit/Desktop/web2py/applications/original/static/tut-1.pdf: 2299

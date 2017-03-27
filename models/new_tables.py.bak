@@ -40,6 +40,6 @@ db.define_table('follow',
                )
 db.define_table('notifications',
                Field('userId'),
-               Field('branch'),
-               Field('specialization'),
+               Field('branchy'),
+               Field('specializationy'),
                Field('body','string'))
