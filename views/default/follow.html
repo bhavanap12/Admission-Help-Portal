@@ -1,15 +1,21 @@
 {{extend 'layout.html'}}
 <h1  style="color:#800000">Follow</h1>
 <table class="table">
-    {{for row in rows:}} 
+    {{for row in rows:}}
+        
     <tr>
-        <td>{{=row.branch}}</a></td>
-        <td>{{=row.specialization}}</td>
-        <td>
-               {{url = URL('default', 'put_subscriber',vars=dict(id1=auth.user.id,branch=row.branch,specialization=row.specialization))}}
-               <button name="publish" onclick="ajax('{{=url}}', [], 'row{{=row.id}}')">follow</button>
-               
-        </td>
+            <td>{{=row.branch}}</a></td>
+            <td>{{=row.specialization}}</td>
+            <td>
+                {{ if row.id in rems :}}
+                    {{url = URL('default', 'remove_subscriber',vars=dict(id1=auth.user.id,branch=row.branch,specialization=row.specialization))}}
+                    <button name="publish" onclick="location.href='{{=url}}'">unfollow</button>
+                {{pass}}
+                {{if row.id not in rems:}}
+                    {{url = URL('default', 'put_subscriber',vars=dict(id1=auth.user.id,branch=row.branch,specialization=row.specialization))}}
+                    <button name="publish" onclick="location.href='{{=url}}'">follow</button>
+                {{pass}}
+            </td>
     </tr>
     {{pass}}
 </table>

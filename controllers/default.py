@@ -22,18 +22,40 @@ def index():
 
 def put_subscriber():
     vars=request.get_vars
-    print vars.id1
+    flag=0
+    if vars.id1==None:
+        flag=1
+        vars.id1=session.id1
+    if vars.branchy==None:
+        vars.branchy=session.branchy
+    if vars.specializationy==None:
+        vars.specializationy=session.specialization
     db.subscribe.insert(userId=vars.id1,branchy=vars.branch,specializationy=vars.specialization)
-    
+    if flag==0:
+        redirect(URL('follow'))
     return locals()
    
+def remove_subscriber():
+    vars=request.get_vars
     
+    flag=0
+    if vars.id1==None:
+        flag=1
+        vars.id1=session.id1
+    if vars.branchy==None:
+        vars.branchy=session.branchy
+    if vars.specializationy==None:
+        vars.specializationy=session.specialization
+    db(db.subscribe.userId==vars.id1 and db.subscribe.branchy==vars.branch and db.subscribe.specializationy==vars.specialization).delete()
+    if flag==1:
+        redirect(URL('follow'))
+    return locals()
     
 def insert_notification(br,sp):
     response.flash=sp
+   
     rows=db(db.subscribe).select()
     for row in rows :
-        response.flash=row.userId
         db.notifications.insert(userId=row.userId,branchy=br,specializationy=sp,body='Resources added')
 
     return locals()
@@ -56,7 +78,7 @@ def user():
     """
     return dict(form=auth())
 
-def manage():
+def manage_admin():
     grid=SQLFORM.grid(db.auth_user)
     return locals()
 
@@ -99,6 +121,15 @@ def notify():
 @auth.requires('login')
 def follow():
     rows=db(db.follow).select()
+    rows2=db(db.subscribe.userId==auth.user.id).select()
+    rems=[]
+    for row in rows:
+        for row2 in rows2:
+            if row.branch ==row2.branchy and row.specialization==row2.specializationy:
+                rems.append(row.id)
+                
+    rems=set(rems)
+   
     return locals()
 def news_and_articles():
     rows=db(db.news_and_articles).select()

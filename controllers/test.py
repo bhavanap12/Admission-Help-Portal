@@ -7,6 +7,7 @@ from gluon.globals import Request
 execfile("applications/project_se/controllers/default.py", globals())
 
 db(db.subscribe.id>0).delete()  # Clear the database
+db(db.notifications.id>0).delete()
 db.commit()
 
 class TestSubscriber(unittest.TestCase):
@@ -29,7 +30,7 @@ class TestSubscriber(unittest.TestCase):
     def testManage(self):
         # Set variables for the test function
         request.post_vars={'id1':1,'branch':"Engineering",'specialization':"civil"}
-        manage() 
+        manage_admin() 
         self.assertEquals(200,response.status)
     def testEngg_colleges(self):
         # Set variables for the test function
@@ -46,7 +47,22 @@ class TestSubscriber(unittest.TestCase):
         request.post_vars={'id1':1,'branch':"Engineering",'specialization':"civil"}
         arch_colleges() 
         self.assertEquals(200,response.status)
-     
+    def testPut_subscriber(self):
+        session.id1=1
+        session.branchy="Engineering"
+        session.specialization="Civil"
+        put_subscriber()
+        
+        self.assertEquals(1,len(db(db.subscribe).select()))
+    def testRemove_subscriber(self):
+        session.id1=1
+        session.branchy="Engineering"
+        session.specialization="Civil"
+        remove_subscriber()
+        
+        self.assertEquals(0,len(db(db.subscribe).select()))
+    
+    
 
 suite = unittest.TestSuite()
 suite.addTest(unittest.makeSuite(TestSubscriber))
