@@ -1,4 +1,9 @@
 {{extend 'layout.html'}}
+{{=form}}
+<script>
+    if(count>0)
+        rows=db.(query).select()
+</script>
 <h1> News Stories and Articles</h1>
 <div>
     {{for row in rows:}}

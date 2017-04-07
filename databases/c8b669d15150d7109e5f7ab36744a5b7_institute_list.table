@@ -39,7 +39,7 @@ I00
 sg10
 S'reference auth_user'
 p15
-ssS'Exam'
+ssS'exam'
 p16
 (dp17
 g4
@@ -56,7 +56,7 @@ I00
 sg10
 S'string'
 p19
-ssS'Stream'
+ssS'stream'
 p20
 (dp21
 g4
@@ -72,7 +72,7 @@ sg9
 I00
 sg10
 g19
-ssS'URL'
+ssS'url'
 p23
 (dp24
 g4
@@ -154,7 +154,7 @@ I00
 sg10
 S'datetime'
 p39
-ssS'Ownership'
+ssS'ownership'
 p40
 (dp41
 g4
@@ -201,5 +201,6 @@ p48
 sg9
 I00
 sg10
-g46
+S'id'
+p49
 ss.

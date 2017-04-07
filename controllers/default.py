@@ -132,7 +132,19 @@ def follow():
    
     return locals()
 def news_and_articles():
-    rows=db(db.news_and_articles).select()
+    count=0
+    form=SQLFORM.factory(Field("title"),
+                              submit_button="Search")
+    #query=db.news_and_articles
+    if form.process().accepted:
+        title=form.vars.title
+        if title:
+            query = db.news_and_articles.title.like("%%%s%%" % title)
+            count=db(query).count()
+    if count>0:
+        rows=db(query).select()
+    else:
+        rows=db(db.news_and_articles).select()
     return locals()
 def proposals():
     rows=db(db.content_proposed).select()
