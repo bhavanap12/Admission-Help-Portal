@@ -31,9 +31,9 @@ response.google_analytics_id = None
 response.menu = [
     (T('Home'), False, URL('default', 'index')),
     
-    (T('Engineering'), False, URL('default', 'user'),[(T('Colleges'), False, URL('default', 'engg_colleges')),(T('News and Articles'), False, URL('default', 'news_and_articles')),(T('Resources'), False, URL('default', 'resources'))]),
-    (T('Architecture'), False, URL('default', 'user'),[(T('Colleges'), False, URL('default', 'arch_colleges')),(T('News and Articles'), False, URL('default', 'news_and_articles')),(T('Resources'), False, URL('default', 'resources'))]),
-    (T('Design'), False, URL('default', 'user'),[(T('Colleges'), False, URL('default', 'design_colleges')),(T('News and Articles'), False, URL('default', 'news_and_articles')),(T('Resources'), False, URL('default', 'resources'))]),
+    (T('Engineering'), False, URL('default', 'user'),[(T('Colleges'), False, URL('default', 'engineering_colleges')),(T('News and Articles'), False, URL('default', 'news_and_articles')),(T('Resources'), False, URL('default', 'engineering_resources'))]),
+    (T('Architecture'), False, URL('default', 'user'),[(T('Colleges'), False, URL('default', 'architecture_colleges')),(T('News and Articles'), False, URL('default', 'news_and_articles')),(T('Resources'), False, URL('default', 'architecture_resources'))]),
+    (T('Design'), False, URL('default', 'user'),[(T('Colleges'), False, URL('default', 'design_colleges')),(T('News and Articles'), False, URL('default', 'news_and_articles')),(T('Resources'), False, URL('default', 'design_resources'))]),
     (T('Follow'), False, URL('default', 'follow')),
     (T('Notifications'), False, URL('default', 'notify'))
 ]

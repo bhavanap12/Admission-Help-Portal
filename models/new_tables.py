@@ -53,6 +53,7 @@ db.define_table('subscribe',
 
 db.define_table('study_material',
                 Field('title','string'),
-                Field('Exam','string'),
+                Field('Exam','string','reference institute_list'),
                 Field('path_of_resource','string'),
+                Field('Stream',requires=IS_IN_SET(['Engineering','Design','Architecture']))
                )

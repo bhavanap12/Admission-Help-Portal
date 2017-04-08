@@ -170,12 +170,55 @@ def call():
     supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv
     """
     return service()
-def resources():
-    rows=db(db.study_material.Exam=='JEE').select()
+def engineering_resources():
+    count=0
+    form=SQLFORM.factory(Field("exam"),
+                              submit_button="Search")
+    #query=db.news_and_articles
+    if form.process().accepted:
+        exam=form.vars.exam
+        if exam:
+            query = db.study_material.Exam.like("%%%s%%" % exam)
+            count=db(query).count()
+    if count>0:
+        rows=db(query).select()
+    else:
+        rows=db((db.institute_list.Stream=='Engineering') & (db.institute_list.Exam==db.study_material.Exam)).select(db.study_material.title,db.study_material.path_of_resource,db.study_material.Stream,db.study_material.Exam,distinct=True)
     response.view='default/resources.html'
     return locals()
-
-def engg_colleges():
+def design_resources():
+    count=0
+    form=SQLFORM.factory(Field("exam"),
+                              submit_button="Search")
+    #query=db.news_and_articles
+    if form.process().accepted:
+        exam=form.vars.exam
+        if exam:
+            query = db.study_material.Exam.like("%%%s%%" % exam)
+            count=db(query).count()
+    if count>0:
+        rows=db(query).select()
+    else:
+        rows=db((db.institute_list.Stream=='Design') & (db.institute_list.Exam==db.study_material.Exam)).select(db.study_material.title,db.study_material.path_of_resource,db.study_material.Stream,db.study_material.Exam,distinct=True)
+    response.view='default/resources.html'
+    return locals()
+def architecture_resources():
+    count=0
+    form=SQLFORM.factory(Field("exam"),
+                              submit_button="Search")
+    #query=db.news_and_articles
+    if form.process().accepted:
+        exam=form.vars.exam
+        if exam:
+            query = db.study_material.Exam.like("%%%s%%" % exam)
+            count=db(query).count()
+    if count>0:
+        rows=db(query).select()
+    else:
+        rows=db((db.institute_list.Stream=='Architecture') & (db.institute_list.Exam==db.study_material.Exam)).select(db.study_material.title,db.study_material.path_of_resource,db.study_material.Stream,db.study_material.Exam,distinct=True)
+    response.view='default/resources.html'
+    return locals()
+def engineering_colleges():
     rows=db(db.institute_list.Stream=='Engineering').select()
     response.view='default/colleges.html'
     return locals()
@@ -185,7 +228,7 @@ def design_colleges():
     response.view='default/colleges.html'
     return locals()
 
-def arch_colleges():
+def architecture_colleges():
     rows=db(db.institute_list.Stream=='Architecture').select()
     response.view='default/colleges.html'
     return locals()
