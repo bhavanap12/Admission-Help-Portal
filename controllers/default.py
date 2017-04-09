@@ -131,7 +131,7 @@ def follow():
     rems=set(rems)
    
     return locals()
-def news_and_articles():
+def engineering_news_and_articles():
     count=0
     form=SQLFORM.factory(Field("title"),
                               submit_button="Search")
@@ -144,8 +144,45 @@ def news_and_articles():
     if count>0:
         rows=db(query).select()
     else:
-        rows=db(db.news_and_articles).select()
+        rows=db(db.news_and_articles.branch=="Engineering").select()
+    response.view='default/news_and_articles.html'
     return locals()
+def show_articles():
+    article=db.news_and_articles(request.args(0,cast=int))
+    return locals()
+def architecture_news_and_articles():
+    count=0
+    form=SQLFORM.factory(Field("title"),
+                              submit_button="Search")
+    #query=db.news_and_articles
+    if form.process().accepted:
+        title=form.vars.title
+        if title:
+            query = db.news_and_articles.title.like("%%%s%%" % title)
+            count=db(query).count()
+    if count>0:
+        rows=db(query).select()
+    else:
+        rows=db(db.news_and_articles.branch=="Architecture").select()
+    response.view='default/news_and_articles.html'
+    return locals()
+def design_news_and_articles():
+    count=0
+    form=SQLFORM.factory(Field("title"),
+                              submit_button="Search")
+    #query=db.news_and_articles
+    if form.process().accepted:
+        title=form.vars.title
+        if title:
+            query = db.news_and_articles.title.like("%%%s%%" % title)
+            count=db(query).count()
+    if count>0:
+        rows=db(query).select()
+    else:
+        rows=db(db.news_and_articles.branch=="Design").select()
+    response.view='default/news_and_articles.html'
+    return locals()
+
 def proposals():
     rows=db(db.content_proposed).select()
     return locals()
@@ -183,7 +220,7 @@ def engineering_resources():
     if count>0:
         rows=db(query).select()
     else:
-        rows=db((db.institute_list.Stream=='Engineering') & (db.institute_list.Exam==db.study_material.Exam)).select(db.study_material.title,db.study_material.path_of_resource,db.study_material.Stream,db.study_material.Exam,distinct=True)
+        rows=db((db.institute_list.Stream=='Engineering') & (db.institute_list.Exam==db.study_material.Exam)).select(db.study_material.title,db.study_material.path_of_resource,db.study_material.Stream,db.study_material.Resource_Type,db.study_material.Exam,distinct=True)
     response.view='default/resources.html'
     return locals()
 def design_resources():
@@ -199,7 +236,7 @@ def design_resources():
     if count>0:
         rows=db(query).select()
     else:
-        rows=db((db.institute_list.Stream=='Design') & (db.institute_list.Exam==db.study_material.Exam)).select(db.study_material.title,db.study_material.path_of_resource,db.study_material.Stream,db.study_material.Exam,distinct=True)
+        rows=db((db.institute_list.Stream=='Design') & (db.institute_list.Exam==db.study_material.Exam)).select(db.study_material.title,db.study_material.path_of_resource,db.study_material.Stream,db.study_material.Resource_Type,db.study_material.Exam,distinct=True)
     response.view='default/resources.html'
     return locals()
 def architecture_resources():
@@ -215,7 +252,7 @@ def architecture_resources():
     if count>0:
         rows=db(query).select()
     else:
-        rows=db((db.institute_list.Stream=='Architecture') & (db.institute_list.Exam==db.study_material.Exam)).select(db.study_material.title,db.study_material.path_of_resource,db.study_material.Stream,db.study_material.Exam,distinct=True)
+        rows=db((db.institute_list.Stream=='Architecture') & (db.institute_list.Exam==db.study_material.Exam)).select(db.study_material.title,db.study_material.path_of_resource,db.study_material.Stream,db.study_material.Resource_Type,db.study_material.Exam,distinct=True)
     response.view='default/resources.html'
     return locals()
 def engineering_colleges():

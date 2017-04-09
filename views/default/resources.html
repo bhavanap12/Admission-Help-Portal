@@ -16,11 +16,11 @@
 <h2>List of {{=rows[0].Stream}} Stream Resources</h2>
 <table class="table">
     <tr class="headings">
-        <td>S.No.</td><td>Book</td><td>Exam Name</td>
+        <td>S.No.</td><td>Book</td><td>Resource Type</td><td>Exam Name</td>
     </tr>
     {{for row in rows:}}
         <tr>
-            <td class="num">i</td><td><a href="{{=row.path_of_resource}}" target="_blank">{{=row.title}}</a></td><td>{{=row.Exam}}</td>
+            <td class="num">i</td><td><a href="{{=row.path_of_resource}}" target="_blank">{{=row.title}}</a></td><td>{{=row.Resource_Type}}</td><td>{{=row.Exam}}</td>
         </tr>
     {{pass}}
 </table>

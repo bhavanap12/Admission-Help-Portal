@@ -1,16 +1,11 @@
 {{extend 'layout.html'}}
 {{=form}}
-<script>
-    if(count>0)
-        rows=db.(query).select()
-</script>
 <h1> News Stories and Articles</h1>
 <div>
     {{for row in rows:}}
     <div >
-        <h2 style="color:#0000FF">{{=row.title}}</h2>
+        <h2 style="color:#0000FF"><a href="{{=URL('show_articles',args=row.id)}}" target="_blank">{{=row.title}}</a></h2>
         <i>Posted on {{=row.time_stamp}}</i>
-        <p>{{=row.body}}</p>
         <i>Author : {{=row.author}}</i>
     </div>
     {{pass}}

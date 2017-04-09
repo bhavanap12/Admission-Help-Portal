@@ -31,7 +31,7 @@ db.define_table('news_and_articles',
                 Field('body','text'),
                 Field('time_stamp','datetime'),
                 Field('author','string'),
-                Field('branch',readable=False,writable=False),
+                Field('branch',readable=False,writable=False,requires=IS_IN_SET(['Engineering','Design','Architecture'])),
                 Field('specialization',readable=False,writable=False)
                )
 db.define_table('follow',
@@ -55,5 +55,6 @@ db.define_table('study_material',
                 Field('title','string'),
                 Field('Exam','string','reference institute_list'),
                 Field('path_of_resource','string'),
-                Field('Stream',requires=IS_IN_SET(['Engineering','Design','Architecture']))
+                Field('Stream',requires=IS_IN_SET(['Engineering','Design','Architecture'])),
+                Field('Resource_Type',requires=IS_IN_SET(['book','video']))
                )
