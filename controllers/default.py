@@ -56,7 +56,8 @@ def insert_notification(br,sp):
    
     rows=db(db.subscribe).select()
     for row in rows :
-        db.notifications.insert(userId=row.userId,branchy=br,specializationy=sp,body='Resources added')
+        if row.branchy==br and row.specializationy==sp:
+            db.notifications.insert(userId=row.userId,branchy=br,specializationy=sp,body='Resources added')
 
     return locals()
 

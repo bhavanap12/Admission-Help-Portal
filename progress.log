@@ -383,3 +383,15 @@
 [2017-04-09 18:54:21] EDIT project_se/views/layout.html: 0
 [2017-04-09 18:55:00] EDIT project_se/views/layout.html: 0
 [2017-04-09 18:55:41] EDIT project_se/views/layout.html: 0
+[2017-04-09 19:31:03] EDIT project_se/views/default/index.html: -37
+[2017-04-09 19:32:50] EDIT project_se/views/default/index.html: -3
+[2017-04-09 19:33:11] EDIT project_se/views/default/index.html: -1
+[2017-04-09 19:37:53] DELETE project_se/static/images/background.jpg: -1088
+[2017-04-09 19:38:28] UPLOAD /home/esha/web2py/applications/project_se/static/background.jpg: 153
+[2017-04-09 19:39:12] UPLOAD /home/esha/web2py/applications/project_se/static/images/background.jpg: 153
+[2017-04-09 19:45:53] DELETE project_se/static/images/background.jpg: -153
+[2017-04-09 19:46:32] UPLOAD /home/esha/web2py/applications/project_se/static/images/background.jpg: 756
+[2017-04-09 19:56:15] EDIT project_se/models/new_tables.py: -3
+[2017-04-10 13:39:30] EDIT project_se/controllers/default.py: 1
+[2017-04-10 13:39:52] EDIT project_se/controllers/default.py: 0
+[2017-04-10 13:41:31] EDIT project_se/controllers/default.py: 0
